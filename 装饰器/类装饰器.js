@@ -20,13 +20,16 @@ Person = __decorate([
         template: 'person.html'
     })
 ], Person);
+// 装饰器调用
 function Component(component) {
+    console.log(component); // { selector: 'person', template: 'person.html' }
     return function (target) {
-        componentClass(target, component);
+        console.log(target); //[Function: Person]
+        //return componentClass(target, component)
     };
 }
 function componentClass(target, component) {
-    var original = target;
+    var original = target; // [Function: Person]
     function constructor(constructor, args) {
         var c = function () {
             return constructor.apply(this, args);

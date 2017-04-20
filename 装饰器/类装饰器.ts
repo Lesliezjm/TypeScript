@@ -7,17 +7,21 @@
 })
 class Person{
     constructor(
-        public firstName:string,
+        public firstName: string,
         public secondName: string
     ){}
 }
+
+// 装饰器调用
 function Component(component){
+    console.log(component);// { selector: 'person', template: 'person.html' }
     return (target: any)=>{
-        componentClass(target, component)
+        console.log(target);//[Function: Person]
+        //return componentClass(target, component)
     }
 }
 function componentClass(target: any, component?:any):any{
-    var original = target;
+    var original = target; // [Function: Person]
     function constructor(constructor, args){
         let c: any = function () {
             return constructor.apply(this, args)
